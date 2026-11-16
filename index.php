@@ -3,7 +3,7 @@ require('conexao.php');
 
 // $sql = "SELECT * FROM filme";
 
-$sql = "SELECT f.titulo, f.ano_lancamento, f.duracao_min, f.preco_diaria, g.nome FROM filme AS f
+$sql = "SELECT f.titulo, f.ano_lancamento, f.duracao_min, f.preco_diaria, g.id_genero, g.nome FROM filme AS f
         LEFT JOIN genero AS g
         ON f.id_genero = g.id_genero";
 $statement = $pdo -> query($sql);
@@ -31,6 +31,18 @@ $resultado = $statement -> fetchAll(PDO::FETCH_ASSOC);
     </div>
   </header>
   <main>
+    <form action="add_filme.php" method="POST">
+      <input type="text" name="titulo" id="titulo" placeholder="Título" required>
+      <input type="number" name="ano-lancamento" id="ano-lancamento" placeholder="Ano de lançamento" min="0" max="9999" required>
+      <input type="number" name="duracao" id="duracao" placeholder="Duração (min)" min="0" max="999" required>
+      <select name="genero" id="genero">
+        <?php foreach($resultado as $genero): ?>
+          <option value="<?= $genero['id_genero'] ?>"><?= $genero['nome'] ?></option>
+        <?php endforeach ?>
+      </select>
+      <input type="number" name="preco-diaria" id="preco-diaria" placeholder="Preço da diária" min="0" max="99" step="0.01" required>
+      <input type="submit" value="Cadastrar filme">
+    </form>
     <table>
       <thead>
         <tr>
