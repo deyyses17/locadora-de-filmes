@@ -1,13 +1,15 @@
 <?php
 require('conexao.php');
 
-// $sql = "SELECT * FROM filme";
-
 $sql = "SELECT f.titulo, f.ano_lancamento, f.duracao_min, f.preco_diaria, g.id_genero, g.nome FROM filme AS f
         LEFT JOIN genero AS g
         ON f.id_genero = g.id_genero";
 $statement = $pdo -> query($sql);
 $resultado = $statement -> fetchAll(PDO::FETCH_ASSOC);
+
+$sql_genero = "SELECT * FROM genero";
+$statement_genero = $pdo -> query($sql_genero);
+$generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +38,7 @@ $resultado = $statement -> fetchAll(PDO::FETCH_ASSOC);
       <input type="number" name="ano-lancamento" id="ano-lancamento" placeholder="Ano de lançamento" min="0" max="9999" required>
       <input type="number" name="duracao" id="duracao" placeholder="Duração (min)" min="0" max="999" required>
       <select name="genero" id="genero">
-        <?php foreach($resultado as $genero): ?>
+        <?php foreach($generos as $genero): ?>
           <option value="<?= $genero['id_genero'] ?>"><?= $genero['nome'] ?></option>
         <?php endforeach ?>
       </select>
