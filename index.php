@@ -1,7 +1,7 @@
 <?php
 require('conexao.php');
 
-$sql = "SELECT f.titulo, f.ano_lancamento, f.duracao_min, f.preco_diaria, g.id_genero, g.nome FROM filme AS f
+$sql = "SELECT f.id_filme, f.titulo, f.ano_lancamento, f.duracao_min, f.preco_diaria, g.id_genero, g.nome FROM filme AS f
         LEFT JOIN genero AS g
         ON f.id_genero = g.id_genero";
 $statement = $pdo -> query($sql);
@@ -48,7 +48,7 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
     <table>
       <thead>
         <tr>
-          <th colspan="5">Filmes</th>
+          <th colspan="6">Filmes</th>
         </tr>
       </thead>
       <tbody>
@@ -58,6 +58,7 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
           <th>Duração</th>
           <th>Gênero</th>
           <th>Preço (diária)</th>
+          <th>Ações</th>
         </tr>
         <?php foreach($resultado as $filme): ?>
           <tr>
@@ -66,11 +67,11 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
             <td><?= "$filme[duracao_min] min" ?></td>
             <td><?= $filme['nome'] ?></td>
             <td><?= "$filme[preco_diaria] R$" ?></td>
+            <td><a href="excluir_filme.php?id=<?= $filme['id_filme'] ?>">Excluir</a></td>
           </tr>
         <?php endforeach ?>
       </tbody>
     </table>
   </main>
-  <!-- <?php var_dump($resultado) ?> -->
 </body>
 </html>
