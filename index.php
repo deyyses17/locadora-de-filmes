@@ -44,6 +44,7 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
       </select>
       <input type="number" name="preco-diaria" class="txt-input" id="preco-diaria" placeholder="Preço da diária" min="0" max="99" step="0.01" required>
       <input type="submit" value="Cadastrar filme" id="btn-add-filme">
+      <a href="lista_filmes.php">Baixar lista de filmes</a>
     </form>
     <table>
       <thead>
