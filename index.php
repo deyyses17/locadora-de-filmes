@@ -33,7 +33,7 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
     </div>
   </header>
   <main>
-    <form action="add_filme.php" method="POST" id="add-filme-form">
+    <form action="add_filme.php" method="POST" class="filme-form">
       <input type="text" name="titulo" class="txt-input" id="titulo" placeholder="Título" required>
       <input type="number" name="ano-lancamento" class="txt-input" id="ano-lancamento" placeholder="Ano de lançamento" min="0" max="9999" required>
       <input type="number" name="duracao" class="txt-input" id="duracao" placeholder="Duração (min)" min="0" max="999" required>
@@ -67,7 +67,10 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
             <td><?= "$filme[duracao_min] min" ?></td>
             <td><?= $filme['nome'] ?></td>
             <td><?= "$filme[preco_diaria] R$" ?></td>
-            <td><a href="excluir_filme.php?id=<?= $filme['id_filme'] ?>">Excluir</a></td>
+            <td>
+              <a href="edicao_filme.php?id=<?= $filme['id_filme'] ?>">Editar</a>
+              <a href="excluir_filme.php?id=<?= $filme['id_filme'] ?>">Excluir</a>
+            </td>
           </tr>
         <?php endforeach ?>
       </tbody>
