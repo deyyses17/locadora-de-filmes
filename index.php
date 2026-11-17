@@ -24,34 +24,84 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
   <header>
     <div id="header-container">
       <h1>Locadora de filmes</h1>
+
       <nav>
         <a href="index.php" class="header-link">Início</a>
         <a href="" class="header-link">Filmes</a>
         <a href="" class="header-link">Funcionários</a>
         <a href="" class="header-link">Clientes</a>
       </nav>
+      
     </div>
   </header>
   <main>
-    <form action="add_filme.php" method="POST" class="filme-form">
-      <input type="text" name="titulo" class="txt-input" id="titulo" placeholder="Título" required>
-      <input type="number" name="ano-lancamento" class="txt-input" id="ano-lancamento" placeholder="Ano de lançamento" min="0" max="9999" required>
-      <input type="number" name="duracao" class="txt-input" id="duracao" placeholder="Duração (min)" min="0" max="999" required>
+    <form
+      action="add_filme.php"
+      method="POST"
+      class="filme-form">
+
+      <input
+        type="text"
+        name="titulo"
+        class="txt-input"
+        id="titulo"
+        placeholder="Título"
+        required>
+
+      <input
+        type="number"
+        name="ano-lancamento"
+        class="txt-input"
+        id="ano-lancamento"
+        placeholder="Ano de lançamento"
+        min="0"
+        max="9999"
+        required>
+
+      <input
+        type="number"
+        name="duracao"
+        class="txt-input"
+        id="duracao"
+        placeholder="Duração (min)"
+        min="0"
+        max="999"
+        required>
+
       <select name="genero" id="genero">
         <?php foreach($generos as $genero): ?>
-          <option value="<?= $genero['id_genero'] ?>"><?= $genero['nome'] ?></option>
+          <option value="<?= $genero['id_genero'] ?>">
+            <?= $genero['nome'] ?>
+          </option>
         <?php endforeach ?>
       </select>
-      <input type="number" name="preco-diaria" class="txt-input" id="preco-diaria" placeholder="Preço da diária" min="0" max="99" step="0.01" required>
-      <input type="submit" value="Cadastrar filme" id="btn-add-filme">
+
+      <input
+        type="number"
+        name="preco-diaria"
+        class="txt-input"
+        id="preco-diaria"
+        placeholder="Preço da diária"
+        min="0"
+        max="99"
+        step="0.01"
+        required>
+
+      <input
+        type="submit"
+        value="Cadastrar filme"
+        id="btn-add-filme">
+
       <a href="lista_filmes.php">Baixar lista de filmes</a>
     </form>
+
     <table>
       <thead>
         <tr>
           <th colspan="6">Filmes</th>
         </tr>
       </thead>
+
       <tbody>
         <tr>
           <th>Título</th>
@@ -61,6 +111,7 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
           <th>Preço (diária)</th>
           <th>Ações</th>
         </tr>
+
         <?php foreach($resultado as $filme): ?>
           <tr>
             <td><?= $filme['titulo'] ?></td>
@@ -75,6 +126,7 @@ $generos = $statement_genero -> fetchAll(PDO::FETCH_ASSOC);
           </tr>
         <?php endforeach ?>
       </tbody>
+
     </table>
   </main>
 </body>
